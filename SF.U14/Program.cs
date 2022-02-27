@@ -25,8 +25,17 @@ namespace PhoneBook
 
             var sortedPhoneBook = phoneBook.OrderBy(x => x.Name).ThenBy(x=> x.LastName);
 
-            Console.WriteLine("Отсортированный список:");
+            Console.WriteLine("Отсортированный расширением список:");
             foreach (var entry in sortedPhoneBook)
+                Console.WriteLine(entry.Name + " " + entry.LastName + ": " + entry.PhoneNumber);
+
+            Console.WriteLine();
+
+            var sortedPhoneBook2 = from contact in phoneBook
+                                   orderby contact.Name, contact.LastName
+                                   select contact;
+            Console.WriteLine("Отсортированный LINQ список:");
+            foreach (var entry in sortedPhoneBook2)
                 Console.WriteLine(entry.Name + " " + entry.LastName + ": " + entry.PhoneNumber);
 
             while (true)
